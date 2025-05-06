@@ -10,7 +10,8 @@ app = Flask(__name__)
 def home():
     hostname = os.uname()[1]
     randomid = uuid.uuid4()
-    return 'Container Hostname: ' + hostname + ' , ' + 'UUID: ' + str(randomid) + '\n'
+    my_name = os.environ.get('MY_NAME', 'Default Name')
+    return 'Container Hostname: ' + hostname + ' , ' + 'UUID: ' + str(randomid) + ' , ' + 'Name: ' + my_name + '\n'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -24,3 +25,4 @@ def login():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+    
