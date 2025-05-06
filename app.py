@@ -1,5 +1,3 @@
-from flask import Flask
-from flask import Flask, render_template
 from flask import Flask, render_template, redirect, url_for, request
 import os
 import uuid
@@ -11,7 +9,13 @@ def home():
     hostname = os.uname()[1]
     randomid = uuid.uuid4()
     my_name = os.environ.get('MY_NAME', 'Default Name')
-    return 'Container Hostname: ' + hostname + ' , ' + 'UUID: ' + str(randomid) + ' , ' + 'Name: ' + my_name + '\n'
+    my_role = os.environ.get('MY_ROLE', 'Default Role')
+    return (
+        f'Container Hostname: {hostname}\n'
+        f'UUID: {randomid}\n'
+        f'Name: {my_name}\n'
+        f'Role: {my_role}\n'
+    )
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -25,4 +29,3 @@ def login():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
-    
