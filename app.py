@@ -11,7 +11,7 @@ def home():
     randomid = uuid.uuid4()
     my_name = os.environ.get('MY_NAME', 'Default Name')
     my_role = os.environ.get('MY_ROLE', 'Default Role')
-    
+
     return (
         f'Container Hostname: {hostname}<br>'
         f'UUID: {randomid}<br>'
